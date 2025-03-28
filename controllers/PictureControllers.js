@@ -3,8 +3,6 @@ const Picture = require("../models/Picture");
 const fs = require("fs");
 
 exports.create = async (req, res) => {
-  res.json("Ok!");
-
   try {
     const { name } = req.body;
 
@@ -26,9 +24,8 @@ exports.create = async (req, res) => {
 exports.findAll = async (req, res) => {
   try {
     const pictures = await Picture.find();
-
     res.json(pictures);
-  } catch (error) {
-    res.status(500).json({ message: "Erro ao buscar!" });
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao buscar as imagens." });
   }
 };
