@@ -7,9 +7,9 @@
     "start": "nodemon ./app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Godoy",
   "license": "ISC",
-  "description": "",
+  "description": "API - Upload de Imagens",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

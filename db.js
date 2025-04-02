@@ -7,18 +7,20 @@ require("dotenv").config();
 // Configura o mongoose para permitir  consulta (Restritas)
 mongoose.set("strictQuery", true);
 
-// Função para conectar ao DB
-async function main() {
-  await mongoose
-    .connect
-    // Link do DB
-    ();
+// Credenciais
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASS;
 
-  // Exibe a mensagem ao úsuario que realizou a conexão
+// Função para no DB
+async function main() {
+  await mongoose.connect(
+    // Link do Mongo
+    `mongodb+srv://${dbUser}:${dbPassword}@clusterapi.h93mb.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAPI`
+  );
+  // Exibe ao usuario que realizou a conexão
   console.log("Conectou ao banco de dados!");
 }
-
-// Caso ocorra erro mostra uma mensagem
+// Exibe a msg ao usuário com erro
 main().catch((err) => console.log(err));
 
 // Exportar a função para utilizar em outro arquivo
