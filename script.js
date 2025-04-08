@@ -10,18 +10,18 @@ const elements = {
 };
 
 const config = {
-  apiUrl: "http://localhost:4000/picture",
+  apiUrl: "http://localhost:4000/pictures",
 };
 
-function showNotification(message, type = "sucess") {
+function showNotification(message, type = "success") {
   const { toast } = elements;
 
   toast.textContent = message;
-  toast.className = ` toast ${type}`;
+  toast.className = `toast ${type}`;
   toast.style.opacity = "1";
 
   setTimeout(() => {
-    toast.styles.opacity = "0";
+    toast.style.opacity = "0";
   }, 3000);
 }
 
@@ -42,13 +42,15 @@ async function fetchPhotos() {
   }
 }
 
+/* Incluir a Foto (Array de objetos) */
+
 function createPhotoCardElement(photo) {
   const card = document.createElement("div");
   card.className = "photo-card";
 
   const imageUrl = `${config.apiUrl}/${photo._id}/image`;
 
-  card.innerHTML = ``;
+  card.innerHTML = ``; // Incluir Preenchimento do Card
 
   return card;
 }
@@ -84,7 +86,7 @@ function closeUploadModal() {
 
 function handleOutsideClick(event) {
   if (event.target === elements.uploadModal) {
-    closeUploadModal;
+    closeUploadModal();
   }
 }
 
@@ -105,9 +107,9 @@ async function loadAndDisplayPhotos() {
 
 function setupEventListeners() {
   elements.addPhotoButton.addEventListener("click", openUploadModal);
-  elements.closeButton.addEventListener("click", openUploadModal);
+  elements.closeButton.addEventListener("click", closeUploadModal);
   window.addEventListener("click", handleFormSubmit);
-  elements.uploadForm.addEventListener("submit", handleFormSubmit);
+  elements.uploadForm.addEventListener("submit", handleOutsideClick);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
