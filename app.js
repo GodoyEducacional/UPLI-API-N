@@ -16,19 +16,16 @@ const port = process.env.PORT || 3000;
 // Importa o roteador de img. para utilizar as Rotas
 const pictureRouter = require("./routes/picture");
 
-//Tirar
-// Configuração do CORS
+// Configurando o CORS
 app.use((req, res, next) => {
-  // Permite que qualquer origem (domínio) faça requisições para o servidor
+  // Permite que qualquer origem, faça requisições para o servidor
   res.header("Access-Control-Allow-Origin", "*");
-
-  // Permite os métodos GET, POST e DELETE nas requisições
+  // Permite os métodos GET, POST, DELETE
   res.header("Access-Control-Allow-Methods", "GET, POST, DELETE");
-
-  // Permite que o cabeçalho Content-Type seja enviado nas requisições
+  // Permite que o cabeçalho Content-Type, seja enviado nas req.
   res.header("Access-Control-Allow-Headers", "Content-Type");
 
-  // Chama o próximo middleware ou a rota no processamento da requisição
+  // Chama a próxima rota ou middlewares
   next();
 });
 

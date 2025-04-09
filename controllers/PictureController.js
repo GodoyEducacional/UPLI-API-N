@@ -43,25 +43,17 @@ exports.findAll = async (req, res) => {
   }
 };
 
-//Tirar
-// Função para obter uma imagem específica
+// Função para obter uma imagem especifica
 exports.getImage = async (req, res) => {
   try {
-    // Busca uma imagem pelo ID fornecido na URL (req.params.id)
     const picture = await Picture.findById(req.params.id);
 
-    // Se a imagem não for encontrada, retorna um erro 404
     if (!picture) {
       return res.status(404).json({ message: "Imagem não encontrada!" });
     }
-
-    // Define o tipo de conteúdo da resposta para o tipo da imagem (contentType)
     res.set("Content-Type", picture.contentType);
-
-    // Envia a imagem no corpo da resposta
     res.send(picture.image);
   } catch (error) {
-    // Caso ocorra um erro na busca ou processamento da imagem, retorna um erro 500
-    res.status(500).json({ message: "Erro ao buscar imagem!" });
+    res.status(500).json({ message: "Erro ao buscar Imagem!" });
   }
 };
