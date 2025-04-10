@@ -1,8 +1,6 @@
 // Importa o modelo Picture que é a interação do banco de dados
 const Picture = require("../models/Picture");
 
-// Importa o fs para interagir com o sistema de arquivos (Não usado no cod.)
-const fs = require("fs");
 
 // Função para criar uma nova imagem no banco de dados
 exports.create = async (req, res) => {
@@ -46,14 +44,21 @@ exports.findAll = async (req, res) => {
 // Função para obter uma imagem especifica
 exports.getImage = async (req, res) => {
   try {
+    // Buscando a img. pelo ID fornecido pelo DB
     const picture = await Picture.findById(req.params.id);
 
+    // Se a img. não for encontrada, retorna erro
     if (!picture) {
       return res.status(404).json({ message: "Imagem não encontrada!" });
     }
+
+    // Define a resposta para o tipo da imagem
     res.set("Content-Type", picture.contentType);
+
+    // Mostra a imagem na resposta
     res.send(picture.image);
   } catch (error) {
+    // Em caso de erro, retorna erro
     res.status(500).json({ message: "Erro ao buscar Imagem!" });
   }
 };
