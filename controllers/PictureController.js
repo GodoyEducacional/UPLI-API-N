@@ -14,7 +14,8 @@ exports.create = async (req, res) => {
     // Cria uma nova instância do modelo Picture com o nome da img e caminho
     const picture = new Picture({
       name,
-      src: file.path,
+      image: file.buffer,
+      contentType: file.mimetype,
     });
 
     // Aqui envia para o banco ou seja salva a img no DB
